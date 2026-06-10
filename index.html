@@ -6,16 +6,18 @@
     <title>Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700;800&display=swap');
 
         :root {
             --bg-primary: #0a0a0a;
             --bg-secondary: #121212;
             --bg-tertiary: #1a1a1a;
             --text-primary: #ffffff;
-            --text-secondary: #b0b0b0;
+            --text-secondary: #a0a0a0;
+            --text-muted: #808080;
             --accent-gold: #d4af37;
             --accent-cyan: #00d9ff;
+            --accent-gold-light: #e8c547;
         }
 
         * {
@@ -25,27 +27,27 @@
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Space Mono', monospace;
             font-weight: 700;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.03em;
         }
 
-        /* Starfield animation */
+        /* Refined starfield animation */
         @keyframes twinkle {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
+            0%, 100% { opacity: 0.15; }
+            50% { opacity: 0.35; }
         }
 
         .star {
             position: absolute;
-            width: 1px;
-            height: 1px;
+            width: 0.5px;
+            height: 0.5px;
             background: white;
             border-radius: 50%;
-            animation: twinkle 3s ease-in-out infinite;
+            animation: twinkle 4s ease-in-out infinite;
         }
 
         /* Glow effect */
         .glow-text {
-            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
         }
 
         .glow-accent {
@@ -59,16 +61,16 @@
 
         .line-animation {
             position: relative;
-            overflow: hidden;
+            display: inline-block;
         }
 
         .line-animation::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: -2px;
             left: 0;
             width: 0;
-            height: 2px;
+            height: 1.5px;
             background: linear-gradient(90deg, #d4af37, #00d9ff);
             transition: width 0.3s ease;
         }
@@ -78,9 +80,10 @@
         }
 
         body {
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a0f2e 100%);
+            background: linear-gradient(135deg, #0a0a0a 0%, #0f0620 50%, #0a0a0a 100%);
             color: var(--text-primary);
             background-attachment: fixed;
+            line-height: 1.6;
         }
 
         .scroll-indicator {
@@ -92,10 +95,10 @@
         }
 
         .dot {
-            width: 12px;
-            height: 12px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
-            margin: 12px 0;
+            margin: 16px 0;
             cursor: pointer;
             border: 2px solid var(--accent-gold);
             transition: all 0.3s ease;
@@ -103,7 +106,160 @@
 
         .dot.active {
             background: var(--accent-gold);
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+            box-shadow: 0 0 12px rgba(212, 175, 55, 0.6);
+            transform: scale(1.2);
+        }
+
+        /* Section improvements */
+        section {
+            position: relative;
+        }
+
+        /* Enhanced navbar */
+        nav {
+            background: rgba(10, 10, 10, 0.85) !important;
+            backdrop-filter: blur(10px) !important;
+        }
+
+        /* Button improvements */
+        button, .btn {
+            letter-spacing: 0.05em;
+            font-weight: 600;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        button:hover, .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Hero section enhancement */
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            line-height: 1.2;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 1.5vw, 1.3rem);
+            color: var(--text-secondary);
+            font-weight: 400;
+            line-height: 1.8;
+        }
+
+        /* Project card improvements */
+        .project-card {
+            position: relative;
+            background: rgba(18, 18, 18, 0.8) !important;
+            border: 1px solid rgba(212, 175, 55, 0.15) !important;
+            border-radius: 12px !important;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .project-card:hover {
+            border-color: rgba(212, 175, 55, 0.4) !important;
+            background: rgba(18, 18, 18, 0.95) !important;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(212, 175, 55, 0.15) !important;
+        }
+
+        .project-card img {
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .project-card:hover img {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        .tech-badge {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 6px 12px !important;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .tech-badge:hover {
+            transform: scale(1.05);
+        }
+
+        /* Skills section */
+        .skill-card {
+            background: rgba(18, 18, 18, 0.6) !important;
+            border: 1px solid rgba(212, 175, 55, 0.1) !important;
+            border-radius: 10px !important;
+            padding: 24px !important;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .skill-card:hover {
+            border-color: rgba(212, 175, 55, 0.3) !important;
+            background: rgba(18, 18, 18, 0.8) !important;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 0 15px rgba(212, 175, 55, 0.1) !important;
+        }
+
+        .skill-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 8px;
+            transition: color 0.3s ease;
+        }
+
+        .skill-card:hover .skill-title {
+            color: var(--accent-cyan);
+        }
+
+        /* About section */
+        .about-image-container {
+            transition: all 0.3s ease;
+        }
+
+        .about-image-container:hover {
+            filter: brightness(1.1);
+        }
+
+        .about-text h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 32px;
+            letter-spacing: -0.01em;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            border-top-color: rgba(212, 175, 55, 0.1) !important;
+            margin-top: 64px;
+        }
+
+        footer a {
+            font-weight: 600;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--accent-gold);
+            text-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+        }
+
+        /* General text improvements */
+        .section-subtitle {
+            color: var(--text-muted);
+            font-weight: 400;
+            font-size: 1.05rem;
+            letter-spacing: 0.02em;
         }
     </style>
 </head>
@@ -137,13 +293,13 @@
     <!-- Hero Section -->
     <section class="relative py-32 text-center overflow-hidden">
         <div class="container mx-auto px-4 relative z-10">
-            <h1 class="text-6xl md:text-7xl font-bold mb-6 glow-text">
+            <h1 class="hero-title glow-text mb-6">
                 WELCOME TO MY<br/><span class="text-[#00d9ff]">CREATIVE UNIVERSE</span>
             </h1>
-            <p class="text-xl text-[#b0b0b0] mb-8 max-w-2xl mx-auto leading-relaxed">
+            <p class="hero-subtitle mb-8 max-w-2xl mx-auto">
                 Web developer crafting amazing digital experiences through code and design. Passionate about building efficient, beautiful applications.
             </p>
-            <div class="flex items-center justify-center mb-12 text-[#d4af37]">
+            <div class="flex items-center justify-center mb-12 text-[#d4af37] text-sm font-medium tracking-wide">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
                     <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
                     <circle cx="12" cy="10" r="3"/>
@@ -151,10 +307,10 @@
                 <span>GEORGIA, TBILISI</span>
             </div>
             <div class="flex justify-center gap-6">
-                <a href="#contact" class="px-8 py-3 bg-[#d4af37] text-black font-bold rounded-full hover:shadow-lg hover:shadow-[#d4af37]/50 transition-all transform hover:scale-105">
+                <a href="#contact" class="px-8 py-3 bg-[#d4af37] text-black font-bold rounded-lg hover:shadow-lg hover:shadow-[#d4af37]/50 transition-all transform hover:scale-105">
                     CONTACT ME
                 </a>
-                <a href="https://github.com/irakliberdzenishvili" class="px-8 py-3 border-2 border-[#00d9ff] text-[#00d9ff] font-bold rounded-full hover:bg-[#00d9ff] hover:text-black transition-all transform hover:scale-105">
+                <a href="https://github.com/irakliberdzenishvili" class="px-8 py-3 border-2 border-[#00d9ff] text-[#00d9ff] font-bold rounded-lg hover:bg-[#00d9ff] hover:text-black transition-all transform hover:scale-105">
                     GITHUB
                 </a>
             </div>
@@ -166,7 +322,7 @@
         <div class="container mx-auto px-4">
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="w-full lg:w-1/3 flex justify-center">
-                    <div class="relative">
+                    <div class="about-image-container relative">
                         <div class="w-[300px] h-[300px] bg-gradient-to-br from-[#d4af37] to-[#00d9ff] p-1 rounded-full">
                             <div class="w-full h-full bg-[#121212] rounded-full flex items-center justify-center">
                                 <div class="text-center">
@@ -177,9 +333,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="w-full lg:w-2/3">
-                    <h2 class="text-5xl font-bold mb-8">ABOUT ME</h2>
-                    <div class="space-y-6 text-[#b0b0b0]">
+                <div class="about-text w-full lg:w-2/3">
+                    <h2 class="font-bold mb-8">ABOUT ME</h2>
+                    <div class="space-y-6">
                         <p class="text-lg leading-relaxed">
                             Hello! I'm an 18-year-old web developer with a passion for creating interesting and efficient web applications. With a strong foundation in modern web technologies, I strive to build solutions that not only meet but exceed user expectations.
                         </p>
@@ -196,12 +352,12 @@
     <section id="projects" class="py-32 relative">
         <div class="container mx-auto px-4">
             <h2 class="text-5xl font-bold text-center mb-4 glow-text">MY PROJECTS</h2>
-            <p class="text-center text-[#b0b0b0] mb-16">Showcasing my recent work and creations</p>
+            <p class="section-subtitle text-center mb-16">Showcasing my recent work and creations</p>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Project Card 1 -->
-                <div class="group bg-[#121212] rounded-lg border border-[#d4af37] border-opacity-30 overflow-hidden hover:border-opacity-100 transition-all duration-300 hover:shadow-lg hover:shadow-[#d4af37]/20">
-                    <img src="ColloseumGymPhoto.jpg" alt="ColloseumGym" class="h-52 w-full object-cover cursor-pointer group-hover:scale-110 transition-transform duration-300" onclick="showModal('ColloseumGymPhoto.jpg')">
+                <div class="project-card group">
+                    <img src="ColloseumGymPhoto.jpg" alt="ColloseumGym" class="h-52 w-full object-cover cursor-pointer" onclick="showModal('ColloseumGymPhoto.jpg')">
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-bold">COLLOSEUM GYM</h3>
@@ -213,16 +369,16 @@
                         </div>
                         <p class="text-[#b0b0b0] mb-4 text-sm">Promotional website for Colloseum Gym</p>
                         <div class="flex flex-wrap gap-2">
-                            <span class="px-2 py-1 text-xs font-mono text-[#00d9ff] bg-[#1a1a1a] rounded border border-[#00d9ff] border-opacity-30">C#</span>
-                            <span class="px-2 py-1 text-xs font-mono text-[#d4af37] bg-[#1a1a1a] rounded border border-[#d4af37] border-opacity-30">ASP.NET</span>
-                            <span class="px-2 py-1 text-xs font-mono text-[#00d9ff] bg-[#1a1a1a] rounded border border-[#00d9ff] border-opacity-30">SQL</span>
+                            <span class="tech-badge text-[#00d9ff] bg-[#1a1a1a] border border-[#00d9ff] border-opacity-30">C#</span>
+                            <span class="tech-badge text-[#d4af37] bg-[#1a1a1a] border border-[#d4af37] border-opacity-30">ASP.NET</span>
+                            <span class="tech-badge text-[#00d9ff] bg-[#1a1a1a] border border-[#00d9ff] border-opacity-30">SQL</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Project Card 2 -->
-                <div class="group bg-[#121212] rounded-lg border border-[#d4af37] border-opacity-30 overflow-hidden hover:border-opacity-100 transition-all duration-300 hover:shadow-lg hover:shadow-[#d4af37]/20">
-                    <img src="Booking.png" alt="Booking.org" class="h-52 w-full object-cover cursor-pointer group-hover:scale-110 transition-transform duration-300" onclick="showModal('Booking.png')">
+                <div class="project-card group">
+                    <img src="Booking.png" alt="Booking.org" class="h-52 w-full object-cover cursor-pointer" onclick="showModal('Booking.png')">
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-bold">BOOKING.ORG</h3>
@@ -235,16 +391,16 @@
                         </div>
                         <p class="text-[#b0b0b0] mb-4 text-sm">Booking platform for travelers worldwide</p>
                         <div class="flex flex-wrap gap-2">
-                            <span class="px-2 py-1 text-xs font-mono text-[#00d9ff] bg-[#1a1a1a] rounded border border-[#00d9ff] border-opacity-30">JS</span>
-                            <span class="px-2 py-1 text-xs font-mono text-[#d4af37] bg-[#1a1a1a] rounded border border-[#d4af37] border-opacity-30">C#</span>
-                            <span class="px-2 py-1 text-xs font-mono text-[#00d9ff] bg-[#1a1a1a] rounded border border-[#00d9ff] border-opacity-30">SQL</span>
+                            <span class="tech-badge text-[#00d9ff] bg-[#1a1a1a] border border-[#00d9ff] border-opacity-30">JS</span>
+                            <span class="tech-badge text-[#d4af37] bg-[#1a1a1a] border border-[#d4af37] border-opacity-30">C#</span>
+                            <span class="tech-badge text-[#00d9ff] bg-[#1a1a1a] border border-[#00d9ff] border-opacity-30">SQL</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Project Card 3 -->
-                <div class="group bg-[#121212] rounded-lg border border-[#d4af37] border-opacity-30 overflow-hidden hover:border-opacity-100 transition-all duration-300 hover:shadow-lg hover:shadow-[#d4af37]/20">
-                    <img src="HMS.png" alt="HMS" class="h-52 w-full object-cover cursor-pointer group-hover:scale-110 transition-transform duration-300" onclick="showModal(['HMS.png', 'HMS2.png', 'HMS3.png'])">
+                <div class="project-card group">
+                    <img src="HMS.png" alt="HMS" class="h-52 w-full object-cover cursor-pointer" onclick="showModal(['HMS.png', 'HMS2.png', 'HMS3.png'])">
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-bold">HMS</h3>
@@ -257,16 +413,16 @@
                         </div>
                         <p class="text-[#b0b0b0] mb-4 text-sm">Hospital management system</p>
                         <div class="flex flex-wrap gap-2">
-                            <span class="px-2 py-1 text-xs font-mono text-[#00d9ff] bg-[#1a1a1a] rounded border border-[#00d9ff] border-opacity-30">JS</span>
-                            <span class="px-2 py-1 text-xs font-mono text-[#d4af37] bg-[#1a1a1a] rounded border border-[#d4af37] border-opacity-30">C#</span>
-                            <span class="px-2 py-1 text-xs font-mono text-[#00d9ff] bg-[#1a1a1a] rounded border border-[#00d9ff] border-opacity-30">MVC</span>
+                            <span class="tech-badge text-[#00d9ff] bg-[#1a1a1a] border border-[#00d9ff] border-opacity-30">JS</span>
+                            <span class="tech-badge text-[#d4af37] bg-[#1a1a1a] border border-[#d4af37] border-opacity-30">C#</span>
+                            <span class="tech-badge text-[#00d9ff] bg-[#1a1a1a] border border-[#00d9ff] border-opacity-30">MVC</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Project Card 4 -->
-                <div class="group bg-[#121212] rounded-lg border border-[#d4af37] border-opacity-30 overflow-hidden hover:border-opacity-100 transition-all duration-300 hover:shadow-lg hover:shadow-[#d4af37]/20">
-                    <img src="chapterHouse.png" alt="Chapter House" class="h-52 w-full object-cover cursor-pointer group-hover:scale-110 transition-transform duration-300" onclick="showModal('chapterHouse.png')">
+                <div class="project-card group">
+                    <img src="chapterHouse.png" alt="Chapter House" class="h-52 w-full object-cover cursor-pointer" onclick="showModal('chapterHouse.png')">
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-bold">CHAPTER HOUSE</h3>
@@ -279,15 +435,15 @@
                         </div>
                         <p class="text-[#b0b0b0] mb-4 text-sm">Book store for film lovers</p>
                         <div class="flex flex-wrap gap-2">
-                            <span class="px-2 py-1 text-xs font-mono text-[#d4af37] bg-[#1a1a1a] rounded border border-[#d4af37] border-opacity-30">ASP.NET MVC</span>
-                            <span class="px-2 py-1 text-xs font-mono text-[#00d9ff] bg-[#1a1a1a] rounded border border-[#00d9ff] border-opacity-30">SQL</span>
+                            <span class="tech-badge text-[#d4af37] bg-[#1a1a1a] border border-[#d4af37] border-opacity-30">ASP.NET MVC</span>
+                            <span class="tech-badge text-[#00d9ff] bg-[#1a1a1a] border border-[#00d9ff] border-opacity-30">SQL</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Project Card 5 -->
-                <div class="group bg-[#121212] rounded-lg border border-[#d4af37] border-opacity-30 overflow-hidden hover:border-opacity-100 transition-all duration-300 hover:shadow-lg hover:shadow-[#d4af37]/20">
-                    <img src="CineBook.png" alt="CineBook" class="h-52 w-full object-cover cursor-pointer group-hover:scale-110 transition-transform duration-300" onclick="showModal('CineBook.png')">
+                <div class="project-card group">
+                    <img src="CineBook.png" alt="CineBook" class="h-52 w-full object-cover cursor-pointer" onclick="showModal('CineBook.png')">
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-bold">CINEBOOK</h3>
@@ -300,15 +456,15 @@
                         </div>
                         <p class="text-[#b0b0b0] mb-4 text-sm">Movie booking platform</p>
                         <div class="flex flex-wrap gap-2">
-                            <span class="px-2 py-1 text-xs font-mono text-[#d4af37] bg-[#1a1a1a] rounded border border-[#d4af37] border-opacity-30">ASP.NET</span>
-                            <span class="px-2 py-1 text-xs font-mono text-[#00d9ff] bg-[#1a1a1a] rounded border border-[#00d9ff] border-opacity-30">SQL</span>
+                            <span class="tech-badge text-[#d4af37] bg-[#1a1a1a] border border-[#d4af37] border-opacity-30">ASP.NET</span>
+                            <span class="tech-badge text-[#00d9ff] bg-[#1a1a1a] border border-[#00d9ff] border-opacity-30">SQL</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Project Card 6 -->
-                <div class="group bg-[#121212] rounded-lg border border-[#d4af37] border-opacity-30 overflow-hidden hover:border-opacity-100 transition-all duration-300 hover:shadow-lg hover:shadow-[#d4af37]/20">
-                    <img src="Movie.png" alt="Movie.org" class="h-52 w-full object-cover cursor-pointer group-hover:scale-110 transition-transform duration-300" onclick="showModal('Movie.png')">
+                <div class="project-card group">
+                    <img src="Movie.png" alt="Movie.org" class="h-52 w-full object-cover cursor-pointer" onclick="showModal('Movie.png')">
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-bold">MOVIE.ORG</h3>
@@ -321,15 +477,15 @@
                         </div>
                         <p class="text-[#b0b0b0] mb-4 text-sm">Platform for movie enthusiasts</p>
                         <div class="flex flex-wrap gap-2">
-                            <span class="px-2 py-1 text-xs font-mono text-[#d4af37] bg-[#1a1a1a] rounded border border-[#d4af37] border-opacity-30">ASP.NET MVC</span>
-                            <span class="px-2 py-1 text-xs font-mono text-[#00d9ff] bg-[#1a1a1a] rounded border border-[#00d9ff] border-opacity-30">SQL</span>
+                            <span class="tech-badge text-[#d4af37] bg-[#1a1a1a] border border-[#d4af37] border-opacity-30">ASP.NET MVC</span>
+                            <span class="tech-badge text-[#00d9ff] bg-[#1a1a1a] border border-[#00d9ff] border-opacity-30">SQL</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Project Card 7 -->
-                <div class="group bg-[#121212] rounded-lg border border-[#d4af37] border-opacity-30 overflow-hidden hover:border-opacity-100 transition-all duration-300 hover:shadow-lg hover:shadow-[#d4af37]/20">
-                    <img src="Api.png" alt="API" class="h-52 w-full object-cover cursor-pointer group-hover:scale-110 transition-transform duration-300" onclick="showModal('Api.png')">
+                <div class="project-card group">
+                    <img src="Api.png" alt="API" class="h-52 w-full object-cover cursor-pointer" onclick="showModal('Api.png')">
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-bold">FLIGHT API</h3>
@@ -342,15 +498,15 @@
                         </div>
                         <p class="text-[#b0b0b0] mb-4 text-sm">RESTful API for flight data management</p>
                         <div class="flex flex-wrap gap-2">
-                            <span class="px-2 py-1 text-xs font-mono text-[#d4af37] bg-[#1a1a1a] rounded border border-[#d4af37] border-opacity-30">ASP.NET API</span>
-                            <span class="px-2 py-1 text-xs font-mono text-[#00d9ff] bg-[#1a1a1a] rounded border border-[#00d9ff] border-opacity-30">Swagger</span>
+                            <span class="tech-badge text-[#d4af37] bg-[#1a1a1a] border border-[#d4af37] border-opacity-30">ASP.NET API</span>
+                            <span class="tech-badge text-[#00d9ff] bg-[#1a1a1a] border border-[#00d9ff] border-opacity-30">Swagger</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Project Card 8 -->
-                <div class="group bg-[#121212] rounded-lg border border-[#d4af37] border-opacity-30 overflow-hidden hover:border-opacity-100 transition-all duration-300 hover:shadow-lg hover:shadow-[#d4af37]/20">
-                    <img src="FitZone.png" alt="Fit-Zone" class="h-52 w-full object-cover cursor-pointer group-hover:scale-110 transition-transform duration-300" onclick="showModal('FitZone.png')">
+                <div class="project-card group">
+                    <img src="FitZone.png" alt="Fit-Zone" class="h-52 w-full object-cover cursor-pointer" onclick="showModal('FitZone.png')">
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-4">
                             <h3 class="text-lg font-bold">FIT-ZONE</h3>
@@ -363,8 +519,8 @@
                         </div>
                         <p class="text-[#b0b0b0] mb-4 text-sm">Fitness tracking application</p>
                         <div class="flex flex-wrap gap-2">
-                            <span class="px-2 py-1 text-xs font-mono text-[#d4af37] bg-[#1a1a1a] rounded border border-[#d4af37] border-opacity-30">ASP.NET API</span>
-                            <span class="px-2 py-1 text-xs font-mono text-[#00d9ff] bg-[#1a1a1a] rounded border border-[#00d9ff] border-opacity-30">Stripe</span>
+                            <span class="tech-badge text-[#d4af37] bg-[#1a1a1a] border border-[#d4af37] border-opacity-30">ASP.NET API</span>
+                            <span class="tech-badge text-[#00d9ff] bg-[#1a1a1a] border border-[#00d9ff] border-opacity-30">Stripe</span>
                         </div>
                     </div>
                 </div>
@@ -376,35 +532,35 @@
     <section id="skills" class="py-32">
         <div class="container mx-auto px-4">
             <h2 class="text-5xl font-bold text-center mb-4 glow-text">MY EXPERTISE</h2>
-            <p class="text-center text-[#b0b0b0] mb-16">Technologies and tools I master</p>
+            <p class="section-subtitle text-center mb-16">Technologies and tools I master</p>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-[#121212] p-6 rounded-lg border border-[#d4af37] border-opacity-30 hover:border-opacity-100 transition-all hover:shadow-lg hover:shadow-[#d4af37]/20 group">
-                    <h3 class="text-lg font-bold text-[#d4af37] mb-2 group-hover:text-[#00d9ff] transition-colors">JAVASCRIPT</h3>
+                <div class="skill-card group">
+                    <h3 class="skill-title">JAVASCRIPT</h3>
                     <p class="text-[#b0b0b0]">Web development and dynamic interactions</p>
                 </div>
-                <div class="bg-[#121212] p-6 rounded-lg border border-[#d4af37] border-opacity-30 hover:border-opacity-100 transition-all hover:shadow-lg hover:shadow-[#d4af37]/20 group">
-                    <h3 class="text-lg font-bold text-[#d4af37] mb-2 group-hover:text-[#00d9ff] transition-colors">ASP.NET</h3>
+                <div class="skill-card group">
+                    <h3 class="skill-title">ASP.NET</h3>
                     <p class="text-[#b0b0b0]">Building robust web applications</p>
                 </div>
-                <div class="bg-[#121212] p-6 rounded-lg border border-[#d4af37] border-opacity-30 hover:border-opacity-100 transition-all hover:shadow-lg hover:shadow-[#d4af37]/20 group">
-                    <h3 class="text-lg font-bold text-[#d4af37] mb-2 group-hover:text-[#00d9ff] transition-colors">ENTITY FRAMEWORK</h3>
+                <div class="skill-card group">
+                    <h3 class="skill-title">ENTITY FRAMEWORK</h3>
                     <p class="text-[#b0b0b0]">ORM for efficient database management</p>
                 </div>
-                <div class="bg-[#121212] p-6 rounded-lg border border-[#d4af37] border-opacity-30 hover:border-opacity-100 transition-all hover:shadow-lg hover:shadow-[#d4af37]/20 group">
-                    <h3 class="text-lg font-bold text-[#d4af37] mb-2 group-hover:text-[#00d9ff] transition-colors">MVC ARCHITECTURE</h3>
+                <div class="skill-card group">
+                    <h3 class="skill-title">MVC ARCHITECTURE</h3>
                     <p class="text-[#b0b0b0]">Model-View-Controller design patterns</p>
                 </div>
-                <div class="bg-[#121212] p-6 rounded-lg border border-[#d4af37] border-opacity-30 hover:border-opacity-100 transition-all hover:shadow-lg hover:shadow-[#d4af37]/20 group">
-                    <h3 class="text-lg font-bold text-[#d4af37] mb-2 group-hover:text-[#00d9ff] transition-colors">API DEVELOPMENT</h3>
+                <div class="skill-card group">
+                    <h3 class="skill-title">API DEVELOPMENT</h3>
                     <p class="text-[#b0b0b0]">Building RESTful services</p>
                 </div>
-                <div class="bg-[#121212] p-6 rounded-lg border border-[#d4af37] border-opacity-30 hover:border-opacity-100 transition-all hover:shadow-lg hover:shadow-[#d4af37]/20 group">
-                    <h3 class="text-lg font-bold text-[#d4af37] mb-2 group-hover:text-[#00d9ff] transition-colors">HTML & CSS</h3>
+                <div class="skill-card group">
+                    <h3 class="skill-title">HTML & CSS</h3>
                     <p class="text-[#b0b0b0]">Creating responsive layouts</p>
                 </div>
-                <div class="bg-[#121212] p-6 rounded-lg border border-[#d4af37] border-opacity-30 hover:border-opacity-100 transition-all hover:shadow-lg hover:shadow-[#d4af37]/20 group">
-                    <h3 class="text-lg font-bold text-[#d4af37] mb-2 group-hover:text-[#00d9ff] transition-colors">SQL</h3>
+                <div class="skill-card group">
+                    <h3 class="skill-title">SQL</h3>
                     <p class="text-[#b0b0b0]">Database query and optimization</p>
                 </div>
             </div>
@@ -412,17 +568,17 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-16 border-t border-[#d4af37] border-opacity-20">
+    <footer class="py-16 border-t">
         <div class="container mx-auto px-4 text-center">
-            <p class="text-[#d4af37] mb-8 font-bold tracking-widest">BUILT BY IRAKLI</p>
-            <div class="flex justify-center space-x-8">
-                <a href="https://github.com/irakliberdzenishvili" target="_blank" class="text-[#b0b0b0] hover:text-[#d4af37] line-animation transition-colors font-bold">
+            <p class="text-[#d4af37] mb-8 font-bold tracking-widest text-sm">BUILT BY IRAKLI</p>
+            <div class="flex justify-center space-x-8 flex-wrap gap-4">
+                <a href="https://github.com/irakliberdzenishvili" target="_blank" class="line-animation font-bold">
                     GITHUB
                 </a>
-                <a href="mailto:irakliberdzena314@gmail.com" id="contact" class="text-[#b0b0b0] hover:text-[#d4af37] line-animation transition-colors font-bold">
+                <a href="mailto:irakliberdzena314@gmail.com" id="contact" class="line-animation font-bold">
                     EMAIL
                 </a>
-                <a href="Resume.pdf" id="resume" class="text-[#b0b0b0] hover:text-[#d4af37] line-animation transition-colors font-bold flex items-center gap-2">
+                <a href="Resume.pdf" id="resume" class="line-animation font-bold flex items-center gap-2">
                     RESUME
                 </a>
             </div>
@@ -448,10 +604,10 @@
     </div>
 
     <script>
-        // Starfield effect
+        // Starfield effect - subtle version
         function createStarfield() {
             const starfield = document.getElementById('starfield');
-            for (let i = 0; i < 100; i++) {
+            for (let i = 0; i < 50; i++) {
                 const star = document.createElement('div');
                 star.className = 'star';
                 star.style.left = Math.random() * 100 + '%';
